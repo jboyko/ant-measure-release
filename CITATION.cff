@@ -9,3 +9,6 @@ authors:
     affiliation: "Department of Ecology and Evolutionary Biology, University of Michigan, Ann Arbor, MI 48109"
 license: AGPL-3.0-or-later
 repository-code: "https://github.com/jboyko/ant-measure-release"
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.21651735

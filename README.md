@@ -13,7 +13,7 @@ The release supports three pose-estimation views (dorsal, head, and profile), a 
 
 ## Data and weights
 
-The paper release will link a versioned Zenodo record here: **DOI pending**.
+The versioned Zenodo release is archived at [10.5281/zenodo.21651735](https://doi.org/10.5281/zenodo.21651735).
 
 The initial record will contain the training-data release (training annotations, split manifests, and supporting metadata) and the four trained weights with their canonical training arguments. AntWeb images and the broader AntWeb-derived production measurement records are not part of this initial deposit; their release requires explicit collaborator approval.
 

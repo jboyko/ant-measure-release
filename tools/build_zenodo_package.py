@@ -145,7 +145,7 @@ def copy_release_code(project: Path, package: Path) -> None:
     )
 
 
-def write_documentation(package: Path, annotation_rows: list[dict], weight_rows: list[dict], release_url: str) -> None:
+def write_documentation(package: Path, annotation_rows: list[dict], weight_rows: list[dict], release_url: str, doi: str) -> None:
     counts = {}
     for row in annotation_rows:
         key = (row["dataset"], row["split"])
@@ -154,7 +154,7 @@ def write_documentation(package: Path, annotation_rows: list[dict], weight_rows:
     (package / "README.md").write_text(
         f"""# Ant Measure Release — training data and model weights
 
-This Zenodo package accompanies [{release_url}]({release_url}). It contains the
+This Zenodo package is archived at DOI [{doi}](https://doi.org/{doi}) and accompanies [{release_url}]({release_url}). It contains the
 training annotations and final model weights for the multi-view ant pose-estimation
 pipeline. It contains no images, raw Labelbox exports, production measurements,
 manual corrections, API requests/responses, or collaborator notes.
@@ -239,6 +239,7 @@ are covered by AGPL-3.0 by default. See https://www.ultralytics.com/license.
         "title": "Ant Measure Release: training annotations and model weights",
         "upload_type": "dataset",
         "publication_date": str(date.today()),
+        "doi": doi,
         "creators": [{"name": "Boyko, James D.", "affiliation": "Department of Ecology and Evolutionary Biology, University of Michigan, Ann Arbor, MI 48109"}],
         "description": "Training annotations, split manifests, metadata, and final model weights for multi-view ant pose estimation. Images and production measurements are not included.",
         "keywords": ["ant morphology", "pose estimation", "computer vision", "morphometrics", "YOLO"],
@@ -265,6 +266,7 @@ def parse_args():
     parser.add_argument("project", type=Path, help="Private ants-pose-detection working archive")
     parser.add_argument("--output", type=Path, required=True, help="New directory for the inspected package")
     parser.add_argument("--release-url", default="https://github.com/jboyko/ant-measure-release")
+    parser.add_argument("--doi", required=True, help="Reserved Zenodo DOI for this package version")
     return parser.parse_args()
 
 
@@ -283,7 +285,7 @@ def main():
         copy_release_code(project, package)
         shutil.copytree(project / "public-release" / "configs", package / "configs")
         shutil.copy2(project / "public-release" / "LICENSE", package / "LICENSE-AGPL-3.0.txt")
-        write_documentation(package, annotations, weights, args.release_url)
+        write_documentation(package, annotations, weights, args.release_url, args.doi)
         write_checksums(package)
         shutil.move(str(package), str(output))
     archive = shutil.make_archive(str(output), "zip", root_dir=output.parent, base_dir=output.name)

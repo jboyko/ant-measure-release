@@ -8,7 +8,7 @@ Background removal is required at both training and inference time. `scripts/bac
 
 ## Published data record
 
-The initial public deposit will distribute training annotations, split manifests, supporting metadata, and trained weights—not AntWeb images or the broader production measurement records. The repository documentation must be updated with the Zenodo DOI before public release. Any future deposit of AntWeb-derived identifiers, calibration records, or measurements requires explicit collaborator approval.
+The initial public deposit at DOI `10.5281/zenodo.21651735` distributes training annotations, split manifests, supporting metadata, and trained weights—not AntWeb images or the broader production measurement records. Any future deposit of AntWeb-derived identifiers, calibration records, or measurements requires explicit collaborator approval.
 
 Code and model weights are distributed under AGPL-3.0. Training annotations and split manifests are distributed under CC0 1.0; the mixed licence scope is stated in the Zenodo package README and per-file licence notices.
 
