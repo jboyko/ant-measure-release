@@ -11,11 +11,6 @@ The release supports three pose-estimation views (dorsal, head, and profile), a 
 - A small synthetic fixture and an offline smoke test.
 - Documentation of the public data/weight deposit and the pipeline's reproducibility limits.
 
-## What is deliberately not in this repository
-
-- AntWeb images, raw Labelbox exports, model weights, production predictions, measurements, debug renders, or API batch files. These belong in the versioned Zenodo deposit, or remain with their original owner.
-- Private planning, manuscript drafts, reviewer notes, co-author material, agent instructions, local/cluster paths, credentials, or chat records.
-
 ## Data and weights
 
 The paper release will link a versioned Zenodo record here: **DOI pending**.
