@@ -1,0 +1,20 @@
+# Data, models, and derived results are retrieved from the archived release.
+/data/
+/work/
+/outputs/
+/wandb/
+/runs/
+
+# Secrets and machine-specific configuration.
+.env
+.env.*
+*.key
+*.pem
+local.*
+
+# Python and editor artefacts.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+.vscode/

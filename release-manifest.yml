@@ -1,0 +1,21 @@
+# This is an allowlist. Files not listed here must not be copied from the
+# private working archive into a public release without a fresh review.
+release_name: ants-pose-detection
+release_type: reproducibility-code
+included:
+  - README.md
+  - LICENSE
+  - CITATION.cff
+  - environment.yml
+  - configs/**
+  - scripts/**
+  - tests/**
+  - docs/**
+excluded:
+  - raw images and Labelbox exports
+  - model checkpoints
+  - production results and debug artefacts
+  - OpenAI batch inputs, outputs, and logs
+  - private manuscript/planning/co-author material
+  - agent instructions and chat artefacts
+  - credentials and machine-specific paths

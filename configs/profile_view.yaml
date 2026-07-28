@@ -1,0 +1,10 @@
+# Keypoint order: Gaster, Head, Mesoma, Node, Sting, Weber_extra
+path: ../data/datasets/Profile_view
+train: images/train
+val: images/val
+test: images/test
+nc: 1
+names: {0: ant}
+kpt_shape: [6, 3]
+flip_idx: [0, 1, 2, 3, 4, 5]
+skeleton: [[1, 2], [2, 5], [5, 3], [3, 0], [0, 4]]
