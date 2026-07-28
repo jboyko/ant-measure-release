@@ -4,7 +4,7 @@ release_name: ants-pose-detection
 release_type: reproducibility-code
 included:
   - README.md
-  - LICENSE
+  - LICENSE (AGPL-3.0 for code and model weights)
   - CITATION.cff
   - environment.yml
   - configs/**
@@ -16,6 +16,6 @@ excluded:
   - model checkpoints
   - production results and debug artefacts
   - OpenAI batch inputs, outputs, and logs
-  - private manuscript/planning/co-author material
-  - agent instructions and chat artefacts
+  - private manuscript/planning and confidential collaboration material
+  - chat artefacts
   - credentials and machine-specific paths

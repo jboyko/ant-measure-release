@@ -7,5 +7,5 @@ authors:
   - family-names: Boyko
     given-names: James D.
     affiliation: "Department of Ecology and Evolutionary Biology, University of Michigan, Ann Arbor, MI 48109"
-license: MIT
+license: AGPL-3.0-or-later
 repository-code: "https://github.com/jboyko/ant-measure-release"

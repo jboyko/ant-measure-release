@@ -10,6 +10,8 @@ Background removal is required at both training and inference time. `scripts/bac
 
 The initial public deposit will distribute training annotations, split manifests, supporting metadata, and trained weights—not AntWeb images or the broader production measurement records. The repository documentation must be updated with the Zenodo DOI before public release. Any future deposit of AntWeb-derived identifiers, calibration records, or measurements requires explicit collaborator approval.
 
+Code and model weights are distributed under AGPL-3.0. Training annotations and split manifests are distributed under CC0 1.0; the mixed licence scope is stated in the Zenodo package README and per-file licence notices.
+
 ## Known sources of variation
 
 - Ultralytics training can vary across GPU hardware and dependency versions.

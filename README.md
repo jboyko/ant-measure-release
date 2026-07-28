@@ -67,7 +67,7 @@ python scripts/train_model.py pose \
 
 ## Licences
 
-Code is released under the [MIT License](LICENSE). The associated factual annotation/measurement data will be dedicated under CC0 in Zenodo. AntWeb image terms remain applicable to the linked images.
+Code and trained weights are released under the [GNU Affero General Public License v3.0](LICENSE), consistent with the Ultralytics YOLO licensing terms. The training annotations and split manifests in the Zenodo record are dedicated to the public domain under CC0 1.0. AntWeb images are not redistributed.
 
 ## Citation
 

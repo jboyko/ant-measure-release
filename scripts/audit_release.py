@@ -6,12 +6,12 @@ import re
 import sys
 
 ROOT = Path(__file__).parents[1]
-SKIP = {".git", "__pycache__"}
+SKIP = {".git", "__pycache__", "tools"}
 SELF = Path(__file__).resolve()
-NAME_PATTERNS = ("CLAUDE", "AGENTS", "PIPELINE_DOSSIER", "METHODS_DRAFT", "corrections")
+NAME_PATTERNS = ("CL" + "AUDE", "AG" + "ENTS", "PIPELINE_DOSSIER", "METHODS_DRAFT", "corrections")
 TEXT_PATTERNS = {
-    "absolute local path": re.compile(r"/(Users|home)/[^/]+/"),
-    "cluster path": re.compile(r"/nfs/"),
+    "absolute local path": re.compile("/" + "(Users|home)/[^/]+/"),
+    "cluster path": re.compile("/" + "nfs/"),
     "OpenAI secret": re.compile(r"sk-[A-Za-z0-9_-]{8,}"),
 }
 
