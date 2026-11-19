@@ -1,8 +1,8 @@
 # Ants Pose Detection
 
-This repository is the public code release for the multi-view ant pose-estimation and morphometrics pipeline described in XXX. 
+This repository provides the code for estimating anatomical keypoints and measuring ant traits from dorsal, head, and profile images.
 
-The release supports three pose-estimation views (dorsal, head, and profile), a ruler detector, background removal with `briaai/RMBG-1.4`, and conversion of predicted keypoints and deposited calibration records into millimetre-scale traits.
+The workflow uses `briaai/RMBG-1.4` for background removal, three pose models for keypoint detection, and a ruler detector for locating scale bars. The measurement script combines keypoint predictions with image dimensions and scale-bar readings to calculate traits in millimetres.
 
 ## What is in this release
 
@@ -12,9 +12,7 @@ The release supports three pose-estimation views (dorsal, head, and profile), a 
 
 ## Data and weights
 
-The versioned Zenodo release is archived at [10.5281/zenodo.21651735](https://doi.org/10.5281/zenodo.21651735).
-
-The initial record will contain the training-data release (training annotations, split manifests, and supporting metadata) and the four trained weights with their canonical training arguments. AntWeb images and the broader AntWeb-derived production measurement records are not part of this initial deposit; their release requires explicit collaborator approval.
+The [Zenodo archive](https://doi.org/10.5281/zenodo.21651735) is for the training annotations, dataset split manifests, model configurations, final training arguments, and four trained checkpoints. The accompanying Data Descriptor documents the production trait dataset.
 
 ## Quick start
 
@@ -24,27 +22,39 @@ conda activate ant-pose
 python -m unittest discover -s tests
 ```
 
-For an inference run, download the matching model weights from Zenodo and use background-removed images:
+### Run pose inference
+
+Extract the Zenodo archive to `data/model-archive/` so that it contains `weights/dorsal_pose.pt`. Place dorsal images in `data/images/dorsal/`. The background-removal step composites each image over the magenta background used during training.
 
 ```bash
 python scripts/background_remove.py --input-dir data/images/dorsal --output-dir work/dorsal_bgrm
 python scripts/run_inference.py pose \
   --view dorsal \
-  --weights data/weights/dorsal_pose.pt \
+  --weights data/model-archive/weights/dorsal_pose.pt \
   --input-dir work/dorsal_bgrm \
   --output-dir work/dorsal_labels
 ```
 
-Build measurements from YOLO prediction labels, image dimensions, and a calibration table:
+### Convert predictions to measurements
+
+For your own images, use the prediction files in `work/dorsal_labels/labels/` and supply two CSVs. The dimensions CSV gives `image_name`, `width`, and `height` in pixels. The calibration CSV gives `image_name`, the scale bar's physical length (`final_value`, `final_unit`), and its length in pixels (`pixel_width`). Use matching image filenames in both tables and the corresponding filename stems for the YOLO labels.
+
+Try the conversion with a single synthetic prediction and scale bar.
 
 ```bash
+mkdir -p work/example/labels
+printf '%s\n' '0 0.5 0.5 1 1 0.1 0.5 2 0.3 0.5 2 0.7 0.5 2 0.9 0.5 2' > work/example/labels/sample.txt
+printf '%s\n' 'image_name,width,height' 'sample.jpg,100,50' > work/example/dimensions.csv
+printf '%s\n' 'image_name,final_value,final_unit,pixel_width' 'sample.jpg,1,mm,20' > work/example/calibration.csv
 python scripts/build_measurements.py \
   --view dorsal \
-  --labels-dir work/dorsal_labels/labels \
-  --dimensions-csv data/image_dimensions.csv \
-  --calibration-csv data/dorsal_units_final.csv \
-  --output-csv work/dorsal_measurements.csv
+  --labels-dir work/example/labels \
+  --dimensions-csv work/example/dimensions.csv \
+  --calibration-csv work/example/calibration.csv \
+  --output-csv work/example/measurements.csv
 ```
+
+The example produces a pronotum width of 2 mm and a body length of 4 mm.
 
 ## Licences
 
@@ -52,4 +62,4 @@ Code and trained weights are released under the [GNU Affero General Public Licen
 
 ## Citation
 
-See [CITATION.cff](CITATION.cff). Replace the placeholder release version and Zenodo DOI when the data deposit and manuscript are final.
+See [CITATION.cff](CITATION.cff) for the software citation and the associated archive DOI.

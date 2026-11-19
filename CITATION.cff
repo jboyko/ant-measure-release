@@ -1,8 +1,8 @@
 cff-version: 1.2.0
-message: "If you use this software, please cite the accompanying Data Descriptor and the archived release."
+message: "If you use this software, please cite the GitHub release and the associated Zenodo archive."
 title: "Ant Measure Release: reproducibility code for multi-view ant pose estimation and morphometrics"
-version: 0.1.0
-date-released: 2026-07-28
+version: 0.1.1
+date-released: 2026-11-19
 authors:
   - family-names: Boyko
     given-names: James D.
@@ -12,3 +12,4 @@ repository-code: "https://github.com/jboyko/ant-measure-release"
 identifiers:
   - type: doi
     value: 10.5281/zenodo.21651735
+    description: "Archive of training annotations, model weights, and reproducibility code"
